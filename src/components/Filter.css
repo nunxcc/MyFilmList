@@ -1,0 +1,32 @@
+.filter-container {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto; 
+  margin-bottom: 24px;
+}
+
+.filter-container::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-container {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.filter-pill {
+  padding: 8px 24px;
+  border-radius: 20px;
+  border: none;
+  background-color: #3b3f54;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap; 
+  transition: background-color 0.2s ease;
+}
+
+.filter-pill.active {
+  background-color: #5450D5;
+}
