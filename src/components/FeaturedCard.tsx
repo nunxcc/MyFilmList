@@ -1,28 +1,32 @@
 import { FaStar, FaPlay } from 'react-icons/fa';
 import './FeaturedCard.css';
+interface FeaturedCardProps {
+  title: string;
+  imageUrl: string;
+  rating: number;
+  releaseDate: string;
+}
 
-const FeaturedCard = () => {
+const FeaturedCard = ({ title, imageUrl, rating, releaseDate }: FeaturedCardProps) => {
   return (
     <div className="featured-wrapper">
       <div className="featured-container">
         <img 
-          src="https://image.tmdb.org/t/p/w500/8c4a8kE7PizaGQQnditMmI1xbRp.jpg" 
-          alt="Featured Movie" 
+          src={imageUrl}
+          alt={title} 
           className="featured-image"
         />
         
         <div className="featured-overlay">
-          
           <div className="featured-rating">
             <FaStar className="star-icon" />
-            <span>4.7</span>
+            <span>{rating.toFixed(1)}</span>
           </div>
 
           <div className="featured-info">
-            <h2 className="featured-title">Rima</h2>
-            <p className="featured-details">Drama, Horror, Mystery & Thriller</p>
-            <p className="featured-details">15, March, 2020</p>
-            <p className="featured-details bottom-row">1h 30min, Arabic</p>
+            <h2 className="featured-title">{title}</h2>
+            <p className="featured-details">Trending #1</p>
+            <p className="featured-details bottom-row">{releaseDate}</p>
           </div>
 
           <button className="play-btn" aria-label="Play Movie">

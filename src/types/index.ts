@@ -5,4 +5,7 @@ export interface MediaItem {
   poster_path: string;
   vote_average: number;
   media_type: string;                  // 'movie' or 'tv'
+  backdrop_path?: string;
+  release_date?: string;
+  first_air_date?: string;
 }
