@@ -1,0 +1,27 @@
+import type { MediaItem } from "../types";
+
+const API_TOKEN = import.meta.env.VITE_TMDB_API_TOKEN;
+const BASE_URL = "https://api.themoviedb.org/3";
+
+const options = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization: `Bearer ${API_TOKEN}`
+  }
+};
+
+export const getTrending = async (): Promise<MediaItem[]> => {
+  try {
+    const response = await fetch(`${BASE_URL}/trending/all/day?language=en-US`, options);
+    const data = await response.json();
+    return data.results;
+  } catch (error) {
+    console.error("Error fetching trending media:", error);
+    return [];
+  }
+};
+
+export const getImageUrl = (path: string) => {
+  return `https://image.tmdb.org/t/p/w500${path}`;
+}

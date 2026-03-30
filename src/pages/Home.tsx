@@ -1,26 +1,32 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import FeaturedCard from '../components/FeaturedCard';
 import Filter from '../components/Filter';
 import MovieCard from '../components/MovieCard';
-
-const mockMovies = [
-  { id: 1, title: 'Under Paris', rating: 5, posterUrl: 'https://image.tmdb.org/t/p/w500/qZPLK5sY40T5X5a22V24J04lQ6w.jpg' },
-  { id: 2, title: 'Damsel', rating: 4.5, posterUrl: 'https://image.tmdb.org/t/p/w500/sMp34cNKjIb18UBOCszKww269zV.jpg' },
-  { id: 3, title: 'Dune: Part Two', rating: 5, posterUrl: 'https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2TGbiU05w.jpg' },
-  { id: 4, title: 'Godzilla x Kong', rating: 3.5, posterUrl: 'https://image.tmdb.org/t/p/w500/tMefBSflR6PGQLvLuPEb12fTYM.jpg' },
-];
+import { getTrending, getImageUrl } from '../services/api';
+import type { MediaItem } from '../types';
 
 const Home = () => {
   const [activeGenre, setActiveGenre] = useState('Action');
+  const [trendingMovies, setTrendingMovies] = useState<MediaItem[]>([]);
   const genres = ['Action', 'Drama', 'Comedy', 'Romance', 'Horror', 'Sci-Fi'];
+
+useEffect(() => {
+  const fetchMovies = async () => {
+    const movies = await getTrending();
+    setTrendingMovies(movies);
+  };
+
+  fetchMovies();
+}, []);
 
   return (
     <div style={{ padding: '24px' }}>
       <Header />
       <SearchBar />
       <FeaturedCard />
+
       <Filter
         categories={genres}
         selectedCategory={activeGenre}
@@ -34,13 +40,13 @@ const Home = () => {
         gridTemplateColumns: 'repeat(2, 1fr)', 
         gap: '16px'
       }}>
-        {mockMovies.map((movie) => (
+        {trendingMovies.map((movie) => (
           <MovieCard
             key={movie.id}
             id={movie.id}
-            title={movie.title}
-            posterUrl={movie.posterUrl}
-            rating={movie.rating}
+            title={movie.title || movie.name || 'Unknown Title'}
+            posterUrl={getImageUrl(movie.poster_path)}
+            rating={movie.vote_average / 2}
           />
         ))}
       </div>
