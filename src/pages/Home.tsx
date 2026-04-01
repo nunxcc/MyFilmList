@@ -4,22 +4,30 @@ import SearchBar from '../components/SearchBar/SearchBar';
 import FeaturedCard from '../components/FeaturedCard/FeaturedCard';
 import Filter from '../components/Filter/Filter';
 import MovieCard from '../components/MovieCard/MovieCard';
-import { getTrending, getImageUrl } from '../services/api';
+import { getTrending, getImageUrl, getMoviesByGenre, GENRE_ID_MAP } from '../services/api';
 import type { MediaItem } from '../types';
 
 const Home = () => {
-  const [activeGenre, setActiveGenre] = useState('Action');
+  const [activeGenre, setActiveGenre] = useState('All');
   const [trendingMovies, setTrendingMovies] = useState<MediaItem[]>([]);
-  const genres = ['Action', 'Drama', 'Comedy', 'Romance', 'Horror', 'Sci-Fi'];
+  const genres =['All', 'Action', 'Drama', 'Comedy', 'Romance', 'Horror', 'Sci-Fi'];
 
 useEffect(() => {
   const fetchMovies = async () => {
-    const movies = await getTrending();
-    setTrendingMovies(movies);
-  };
 
+      if (activeGenre === 'All') {
+        const movies = await getTrending();
+        setTrendingMovies(movies);
+
+      } else {
+        const genreId = GENRE_ID_MAP[activeGenre];
+        const movies = await getMoviesByGenre(genreId);
+        setTrendingMovies(movies);
+      }
+    };
+    
   fetchMovies();
-}, []);
+  }, [activeGenre]); 
 
   return (
     <div style={{ padding: '24px' }}>

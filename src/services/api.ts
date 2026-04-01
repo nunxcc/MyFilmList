@@ -25,3 +25,23 @@ export const getTrending = async (): Promise<MediaItem[]> => {
 export const getImageUrl = (path: string) => {
   return `https://image.tmdb.org/t/p/w500${path}`;
 }
+
+export const GENRE_ID_MAP: Record<string, number> = {
+  'Action': 28,
+  'Drama': 18,
+  'Comedy': 35,
+  'Romance': 10749,
+  'Horror': 27,
+  'Sci-Fi': 878,
+}
+
+export const getMoviesByGenre = async (genreId: number): Promise<MediaItem[]> => {
+  try {
+    const response = await fetch(`${BASE_URL}/discover/movie?with_genres=${genreId}&language=en-US`, options);
+    const data = await response.json();
+    return data.results;
+  } catch (error) {
+    console.error("Error fetching genre data:", error);
+    return[];
+  }
+};
