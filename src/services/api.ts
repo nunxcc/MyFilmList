@@ -45,3 +45,15 @@ export const getMoviesByGenre = async (genreId: number): Promise<MediaItem[]> =>
     return[];
   }
 };
+
+export const searchMedia = async (query: string): Promise<MediaItem[]> => {
+  try {
+    const response = await fetch(`${BASE_URL}/search/multi?query=${query}&include_adult=false&language=en-US`, options);
+    const data = await response.json();
+    // Multi pq pode retornar tanto filmes como séries, e queremos ambos
+    return data.results.filter((item: MediaItem) => item.media_type === 'movie' || item.media_type === 'tv');
+  } catch (error) {
+    console.error("Error searching media:", error);
+    return[];
+  }
+};

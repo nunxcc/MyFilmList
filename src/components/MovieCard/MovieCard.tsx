@@ -7,9 +7,10 @@ interface MovieCardProps {
   title: string;
   posterUrl: string;
   rating: number;
+  mediaType: string;
 }
 
-const MovieCard = ({ id, title, posterUrl, rating }: MovieCardProps) => {
+const MovieCard = ({ id, title, posterUrl, rating, mediaType }: MovieCardProps) => {
   
   const renderStars = () => {
     const stars =[];
@@ -24,7 +25,7 @@ const MovieCard = ({ id, title, posterUrl, rating }: MovieCardProps) => {
   };
 
   return (
-    <Link to={`/details/movie/${id}`} className="movie-card">
+    <Link to={`/details/${mediaType}/${id}`} className="movie-card">
       <div className="poster-container">
         <img src={posterUrl} alt={title} className="movie-poster" />
       </div>
