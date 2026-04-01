@@ -50,10 +50,32 @@ export const searchMedia = async (query: string): Promise<MediaItem[]> => {
   try {
     const response = await fetch(`${BASE_URL}/search/multi?query=${query}&include_adult=false&language=en-US`, options);
     const data = await response.json();
-    // Multi pq pode retornar tanto filmes como séries, e queremos ambos
+    // Multi because it can return both movies and TV shows, so we filter to only include those types
     return data.results.filter((item: MediaItem) => item.media_type === 'movie' || item.media_type === 'tv');
   } catch (error) {
     console.error("Error searching media:", error);
+    return[];
+  }
+};
+
+export const getMediaDetails = async (type: string, id: string) => {
+  try {
+    const response = await fetch(`${BASE_URL}/${type}/${id}?language=en-US`, options);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching details:", error);
+    return null;
+  }
+};
+
+export const getMediaCredits = async (type: string, id: string) => {
+  try {
+    const response = await fetch(`${BASE_URL}/${type}/${id}/credits?language=en-US`, options);
+    const data = await response.json();
+    return data.cast.slice(0, 10); // Because more than 10 cast members can be overwhelming, we limit it to the top 10
+  } catch (error) {
+    console.error("Error fetching credits:", error);
     return[];
   }
 };

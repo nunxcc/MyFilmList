@@ -10,7 +10,7 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
   const [query, setQuery] = useState('');
 
   const handleSearch = (e: React.FormEvent) => {
-    // Isto para o browser não recarregar a página quando o utilizador clicar no enter ou no botão de pesquisa
+    // This prevents the form from submitting and refreshing the page
     e.preventDefault(); 
     if (query.trim()) { 
       onSearch(query);
