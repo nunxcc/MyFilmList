@@ -73,7 +73,10 @@ const Home = () => {
             id={movie.id}
             mediaType={movie.media_type || 'movie'} 
             title={movie.title || movie.name || 'Unknown Title'}
-            posterUrl={getImageUrl(movie.poster_path)}
+            posterUrl={movie.poster_path
+              ? getImageUrl(movie.poster_path)
+              : 'https://via.placeholder.com/500x750/2A2D3A/FFFFFF?text=No+Poster'}
+              
             rating={movie.vote_average / 2}
           />
         ))}

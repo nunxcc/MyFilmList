@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { FiArrowLeft, FiShare2 } from 'react-icons/fi';
+import { useParams } from 'react-router-dom';
 import { FaPlay, FaStar, FaHeart } from 'react-icons/fa';
 import { getMediaDetails, getMediaCredits, getImageUrl } from '../services/api';
 import type { MediaDetails, CastMember } from '../types';
@@ -9,8 +8,6 @@ import DetailsBar from '../components/Navbar/DetailsBar';
 
 const Details = () => {
   const { type, id } = useParams(); 
-  const navigate = useNavigate(); // Back-button
-  
   const [details, setDetails] = useState<MediaDetails | null>(null);
   const [cast, setCast] = useState<CastMember[]>([]);
 
