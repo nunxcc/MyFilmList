@@ -1,8 +1,8 @@
-import './Header.css';
+import './NavigationBar.css';
 import { FiMenu } from 'react-icons/fi';
 import userAvatar from '../../assets/userHeisen.jpg';
 
-const Header = () => {
+const NavigationBar = () => {
   return (
     <header className="header-container">
       <div className="profile-section">
@@ -24,4 +24,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default NavigationBar;

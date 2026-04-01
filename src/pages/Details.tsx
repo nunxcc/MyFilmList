@@ -5,6 +5,7 @@ import { FaPlay, FaStar, FaHeart } from 'react-icons/fa';
 import { getMediaDetails, getMediaCredits, getImageUrl } from '../services/api';
 import type { MediaDetails, CastMember } from '../types';
 import './Details.css';
+import DetailsBar from '../components/Navbar/DetailsBar';
 
 const Details = () => {
   const { type, id } = useParams(); 
@@ -48,14 +49,7 @@ const Details = () => {
         />
         <div className="hero-overlay"></div>
         
-        <div className="top-bar">
-          <button className="icon-btn" onClick={() => navigate(-1)}>
-            <FiArrowLeft size={28} />
-          </button>
-          <button className="icon-btn">
-            <FiShare2 size={24} />
-          </button>
-        </div>
+        <DetailsBar />
 
         <button className="center-play">
           <FaPlay size={20} style={{ marginLeft: '4px' }} />

@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import Header from '../components/Header/Header';
+import NavigationBar from '../components/Navbar/NavigationBar';
 import SearchBar from '../components/SearchBar/SearchBar';
 import FeaturedCard from '../components/FeaturedCard/FeaturedCard';
 import Filter from '../components/Filter/Filter';
 import MovieCard from '../components/MovieCard/MovieCard';
 import { searchMedia, getTrending, getImageUrl, getMoviesByGenre, GENRE_ID_MAP } from '../services/api';
 import type { MediaItem } from '../types';
+import './Home.css';
 
 const Home = () => {
   const [activeGenre, setActiveGenre] = useState('All');
@@ -37,8 +38,8 @@ const Home = () => {
   };
 
   return (
-    <div style={{ padding: '24px' }}>
-      <Header />
+    <div className="home-container">
+      <NavigationBar />
       <SearchBar onSearch={handleSearch} />
       
       {!searchQuery && trendingMovies.length > 0 && (
@@ -65,11 +66,7 @@ const Home = () => {
          activeGenre === 'All' ? 'Trending Now' : `${activeGenre} Movies`}
       </h2>
 
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(2, 1fr)', 
-        gap: '16px'
-      }}>
+      <div className="movie-grid">
         {trendingMovies.map((movie) => (
           <MovieCard
             key={movie.id}
