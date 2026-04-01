@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import Header from '../components/Header';
-import SearchBar from '../components/SearchBar';
-import FeaturedCard from '../components/FeaturedCard';
-import Filter from '../components/Filter';
-import MovieCard from '../components/MovieCard';
+import Header from '../components/Header/Header';
+import SearchBar from '../components/SearchBar/SearchBar';
+import FeaturedCard from '../components/FeaturedCard/FeaturedCard';
+import Filter from '../components/Filter/Filter';
+import MovieCard from '../components/MovieCard/MovieCard';
 import { getTrending, getImageUrl } from '../services/api';
 import type { MediaItem } from '../types';
 

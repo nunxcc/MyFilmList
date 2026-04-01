@@ -1,6 +1,6 @@
 import './Header.css';
 import { FiMenu } from 'react-icons/fi';
-import userAvatar from '../assets/userHeisen.jpg';
+import userAvatar from '../../assets/userHeisen.jpg';
 
 const Header = () => {
   return (

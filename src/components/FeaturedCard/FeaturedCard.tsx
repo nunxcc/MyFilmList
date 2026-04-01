@@ -1,5 +1,6 @@
 import { FaStar, FaPlay } from 'react-icons/fa';
 import './FeaturedCard.css';
+
 interface FeaturedCardProps {
   title: string;
   imageUrl: string;
