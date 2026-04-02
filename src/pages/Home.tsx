@@ -44,11 +44,14 @@ const Home = () => {
       
       {!searchQuery && trendingMovies.length > 0 && (
         <>
-          <FeaturedCard 
-            title={trendingMovies[0].title || trendingMovies[0].name || 'Unknown'}
-            imageUrl={getImageUrl(trendingMovies[0].backdrop_path || trendingMovies[0].poster_path || '')}
-            rating={trendingMovies[0].vote_average / 2}
-            releaseDate={trendingMovies[0].release_date || trendingMovies[0].first_air_date || ''}
+          <FeaturedCard
+            movies={trendingMovies.slice(0, 4).map((movie) => ({
+              id: movie.id,
+              title: movie.title || movie.name || 'Unknown',
+              imageUrl: getImageUrl(movie.backdrop_path || movie.poster_path || ''),
+              rating: movie.vote_average / 2,
+              releaseDate: movie.release_date || movie.first_air_date || ''
+            }))}
           />
           <Filter
             categories={genres}

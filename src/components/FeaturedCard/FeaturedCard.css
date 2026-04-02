@@ -95,6 +95,7 @@
   height: 8px;
   border-radius: 50%;
   background-color: #3b3f54;
+  cursor: pointer;
 }
 
 .dot.active {
