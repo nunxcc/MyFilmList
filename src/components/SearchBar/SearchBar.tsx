@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './SearchBar.css';
-import { FiSearch, FiSliders } from 'react-icons/fi';
+import { FiSearch, FiSliders, FiX } from 'react-icons/fi';
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
@@ -12,9 +12,12 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
   const handleSearch = (e: React.FormEvent) => {
     // This prevents the form from submitting and refreshing the page
     e.preventDefault(); 
-    if (query.trim()) { 
       onSearch(query);
-    }
+  };
+
+  const handleClear = () => {
+    setQuery(''); 
+    onSearch('');
   };
 
   return (
@@ -28,7 +31,15 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
         onChange={(e) => setQuery(e.target.value)}
         className="search-input"
       />
+
+      {query && (
+        <button type="button" className="clear-btn" onClick={handleClear} aria-label="Clear search">
+          <FiX size={20} />
+        </button>
+      )}
       
+      <div className="divider"></div>
+    
       <button type="button" className="filter-btn">
         <FiSliders size={20} />
       </button>
