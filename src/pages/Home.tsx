@@ -69,6 +69,13 @@ const Home = () => {
          activeGenre === 'All' ? 'Trending Now' : `${activeGenre} Movies`}
       </h2>
 
+      {searchQuery && trendingMovies.length === 0 && (
+        <div style={{ textAlign: 'center', marginTop: '40px', color: '#8b8b8b' }}>
+          <h3>No results found for "{searchQuery}"</h3>
+          <p>Try searching for a different movie or TV show.</p>
+        </div>
+      )}
+
       <div className="movie-grid">
         {trendingMovies.map((movie) => (
           <MovieCard
