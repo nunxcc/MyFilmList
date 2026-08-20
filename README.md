@@ -2,7 +2,7 @@
  
 A clean, responsive movie discovery app powered by the TMDB API. Search any film, explore details, browse trending content (no account needed).
  
-**[→ Live Demo](myfilmlist-app.vercel.app.)**
+**[→ Live Demo](myfilmlist-app.vercel.app)**
  
 ---
  
